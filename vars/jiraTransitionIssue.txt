@@ -1,0 +1,15 @@
+Transitions a Jira issue when the build completes successfully.
+
+Parameters:
+  transitionName (required) - name of the workflow transition, e.g. 'Done' (case-insensitive)
+  issueId (optional)        - issue key; defaults to the key at the start of the last commit message
+
+Requires the JIRA_URL and JIRA_CREDENTIALS environment variables and a node with the git workspace.
+Skips without failing when the build is not SUCCESS, no issue key is found, or the transition is not available.
+
+Usage:
+  post {
+    success {
+      jiraTransitionIssue(transitionName: 'Done')
+    }
+  }
